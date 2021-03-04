@@ -13,13 +13,16 @@ import android.widget.TextView;
 import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
-    private String firstFactor;
-    private String secondFactor;
-    private float Resultat = 0;
+
+
     TextView textViewResult;
     private String tvResultText = "0";
-    private char Operation = ' ';
     TextView tvResult;
+    private String firstFactor = "";
+    private String secondFactor = "";
+    private float mResult = 0;
+    private char mOperation = ' ';
+
 
     private final View.OnClickListener muClickListener = (view) -> {
         switch (view.getId()) {
@@ -72,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
                 break;
             }
             case R.id.btn_result: {
-                if (Operation == '!') return;
+                if (mOperation == '!') return;
 
                 String resultText = "";
                 try {
@@ -80,34 +83,34 @@ public class MainActivity extends AppCompatActivity {
                         float first = Float.parseFloat(firstFactor);
                         float second = Float.parseFloat(secondFactor);
 
-                        if (Operation != ' ' && tvResultText.contains("=")) {
-                            first = Resultat;
-                            firstFactor = "" + Resultat;
-                            setTvResult("" + Resultat + Operation + secondFactor);
+                        if (mOperation != ' ' && tvResultText.contains("=")) {
+                            first = mResult;
+                            firstFactor = "" + mResult;
+                            setTvResult("" +mResult + mOperation + secondFactor);
                         }
                         addCharToText(" = ");
 
-                        switch (Operation) {
+                        switch (mOperation) {
                             case '+':
-                                Resultat = first + second;
+                                mResult = first + second;
                                 break;
                             case '-':
-                                Resultat = first - second;
+                                mResult = first - second;
                                 break;
                             case '*':
-                                Resultat = first * second;
+                                mResult = first * second;
                                 break;
                             case '/':
                                 if (second == 0) {
                                     throw new ArithmeticException("человек ты делишь на 0");
                                 }
-                                Resultat = first / second;
+                                mResult = first / second;
                                 break;
                             default:
-                                Resultat = 0;
+                                mResult = 0;
                         }
-                        resultText = "" + Resultat;
-                        if (Float.isInfinite(Resultat)) {
+                        resultText = "" + mResult;
+                        if (Float.isInfinite(mResult)) {
                             throw new ArithmeticException("Переполнение");
                         }
                         resultText = splitZero(resultText);
@@ -117,36 +120,37 @@ public class MainActivity extends AppCompatActivity {
                     addCharToText(resultText);
                 } catch (Exception ex) {
                     addCharToText(" : " + ex.getMessage());
-                    Operation = '!';
+                    mOperation = '!';
                 }
                 break;
             }
             case R.id.btn_multiplication: {
-                if (Operation == '!' || Operation != ' ' || firstFactor.equals("")) return;
+                if (mOperation == '!' || mOperation != ' ' || firstFactor.equals("")) return;
 
-                Operation = '*';
+                mOperation = '*';
                 addCharToText(" * ");
                 break;
             }
             case R.id.btn_addition: {
-                if (Operation == '!' || Operation != ' ' || firstFactor.equals("")) return;
-                Operation = '+';
+                if (mOperation == '!' || mOperation != ' ' || firstFactor.equals("")) return;
+                mOperation = '+';
                 addCharToText(" + ");
                 break;
             }
             case R.id.btn_subtraction: {
-                if (Operation == '!' || Operation != ' ' || firstFactor.equals("")) return;
-                Operation = '-';
+                if (mOperation == '!' || mOperation != ' ' || firstFactor.equals("")) return;
+                mOperation = '-';
                 addCharToText(" - ");
                 break;
             }
             case R.id.btn_division: {
-                if (Operation == '!' || Operation != ' ' || firstFactor.equals("")) return;
-                Operation = '/';
+                if (mOperation == '!' || mOperation != ' ' || firstFactor.equals("")) return;
+                mOperation = '/';
                 addCharToText(" / ");
                 break;
 
             }
+
 
 
         }
@@ -156,8 +160,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         textViewResult = findViewById(R.id.textViewResult);
+
         Button btn_one = findViewById(R.id.btn_one);
         Button btn_c = findViewById(R.id.btn_c);
         Button btn_two = findViewById(R.id.btn_two);
@@ -233,39 +237,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    private final View.OnClickListener keyBackClickListener = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            if (Operation == '!') return;
-
-            if (tvResultText.contains("=")) return;
-
-            if (tvResultText.length() == 1) {
-                firstFactor = "";
-                setTvResult("0");
-            } else if (
-                    tvResultText.charAt(tvResultText.length() - 1) != '+' && tvResultText.charAt(tvResultText.length() - 1) != '*' &&
-                            tvResultText.charAt(tvResultText.length() - 1) != '/' && tvResultText.charAt(tvResultText.length() - 1) != '-'
-            ) {
-                if (Operation == ' ') {
-                    if (!firstFactor.equals("")) {
-                        firstFactor = firstFactor.substring(0, firstFactor.length() - 1);
-                    }
-                } else {
-                    if (!secondFactor.equals("")) {
-                        secondFactor = secondFactor.substring(0, secondFactor.length() - 1);
-                    }
-                }
-                setTvResult(tvResultText.substring(0, tvResultText.length() - 1));
-            } else {
-                Operation = ' ';
-                secondFactor = "";
-                setTvResult(tvResultText.substring(0, tvResultText.length() - 1));
-            }
-        }
-    };
-
-
     private String splitZero(String resultText) {
         boolean exist0 = false;
         if (resultText.contains(".") || resultText.contains(",")) {
@@ -284,21 +255,20 @@ public class MainActivity extends AppCompatActivity {
         return resultText;
     }
 
-
     private void addCharToParam(String key) {
         if (tvResultText.contains("=")) {
             initCalc();
         }
-        if (Operation == '!') {
+        if (mOperation == '!') {
             return;
-        } else if (Operation == ' ') {
-            if ((!key.equals(".") || !firstFactor.contains(".")) && firstFactor.length() < 15) {
+        } else if (mOperation == ' ') {
+            if ((!key.equals(".") || !firstFactor.contains(".")) && firstFactor.length()<15) {
                 if (firstFactor.length() == 0 && key.equals(".")) key = "0" + key;
                 firstFactor += key;
                 addCharToText(key);
             }
         } else {
-            if ((!key.equals(".") || !secondFactor.contains(".")) && secondFactor.length() < 15) {
+            if ((!key.equals(".") || !secondFactor.contains(".")) && secondFactor.length()<15) {
                 if (secondFactor.length() == 0 && key.equals(".")) key = "0" + key;
                 secondFactor += key;
                 addCharToText(key);
@@ -307,7 +277,6 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
-
 
     private void addCharToText(String key) {
 
@@ -322,15 +291,13 @@ public class MainActivity extends AppCompatActivity {
     private void setTvResult(String text) {
         tvResultText = text;
         textViewResult.setText(text);
-
     }
-
 
     private void initCalc() {
         firstFactor = "";
         secondFactor = "";
-        Resultat = 0f;
-        Operation = ' ';
+        mResult = 0f;
+        mOperation = ' ';
         setTvResult("0");
     }
 
