@@ -1,0 +1,24 @@
+Index: app/src/main/java/com/example/myandroidprojekt/MainActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.myandroidprojekt;\r\n\r\nimport androidx.appcompat.app.AppCompatActivity;\r\n\r\nimport android.os.Bundle;\r\nimport android.widget.Button;\r\nimport android.widget.EditText;\r\nimport android.widget.TextView;\r\n\r\npublic class MainActivity extends AppCompatActivity {\r\n\r\n\r\n    @Override\r\n    protected void onCreate(Bundle savedInstanceState) {\r\n        super.onCreate(savedInstanceState);\r\n        setContentView(R.layout.activity_main);\r\n\r\n        Button button = findViewById(R.id.button);\r\n        button.setOnClickListener(view -> {\r\n            EditText editText = findViewById(R.id.editText);\r\n            TextView textView = findViewById(R.id.textView);\r\n            textView.setText(editText.getText().toString());\r\n        });\r\n\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/example/myandroidprojekt/MainActivity.java	(revision 61e9ac6f2b07d876c6446c703e288d4e68c9176f)
++++ app/src/main/java/com/example/myandroidprojekt/MainActivity.java	(date 1613929083955)
+@@ -15,12 +15,6 @@
+         super.onCreate(savedInstanceState);
+         setContentView(R.layout.activity_main);
+ 
+-        Button button = findViewById(R.id.button);
+-        button.setOnClickListener(view -> {
+-            EditText editText = findViewById(R.id.editText);
+-            TextView textView = findViewById(R.id.textView);
+-            textView.setText(editText.getText().toString());
+-        });
++        }
+ 
+     }
+-}
+\ No newline at end of file

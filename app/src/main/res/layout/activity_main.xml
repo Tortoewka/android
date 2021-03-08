@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
     tools:context=".MainActivity">
 
 
@@ -12,14 +11,14 @@
         android:id="@+id/textViewResult"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="10dp"
+        android:layout_marginStart="@dimen/out_start_margin"
+        android:layout_marginTop="@dimen/out_put_margin"
+        android:layout_marginEnd="@dimen/out_end_margin"
         android:background="@android:color/holo_green_light"
-        android:text="0"
+        android:text=""
         android:textSize="35sp"
         app:layout_constraintTop_toTopOf="parent"
-     />
+        tools:layout_editor_absoluteX="16dp" />
 
     <Button
         android:id="@+id/btn_c"
@@ -37,17 +36,17 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="0"
-
-
         android:text="@string/division"
         app:layout_constraintEnd_toEndOf="@+id/btn_multiplication"
         app:layout_constraintTop_toTopOf="@+id/btn_c" />
 
     <Button
         android:id="@+id/btn_three"
+
+
+        style="@style/MuStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
         android:ems="0"
         android:text="@string/three"
         app:layout_constraintStart_toEndOf="@+id/btn_two"
@@ -77,19 +76,21 @@
 
     <Button
         android:id="@+id/btn_multiplication"
+
+        style="@style/MuStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
         android:ems="0"
         android:text="@string/multiplication"
         app:layout_constraintEnd_toEndOf="@+id/btn_seven"
         app:layout_constraintTop_toTopOf="@+id/btn_addition" />
 
+
     <Button
         android:id="@+id/btn_subtraction"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="5dp"
+        android:layout_marginEnd="@dimen/btn_out_end_margin"
         android:ems="0"
         android:text="@string/subtraction"
         app:layout_constraintStart_toStartOf="@+id/btn_nine"
@@ -110,7 +111,7 @@
         android:id="@+id/btn_four"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="5dp"
+        android:layout_marginEnd="@dimen/btn_out_end_margin"
         android:ems="0"
         android:text="@string/four"
         app:layout_constraintEnd_toStartOf="@+id/btn_five"
@@ -120,7 +121,7 @@
         android:id="@+id/btn_five"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="@dimen/btn_out_bottom_margin"
         android:ems="0"
         android:text="@string/five"
         app:layout_constraintEnd_toEndOf="@+id/btn_eight"
@@ -130,9 +131,9 @@
 
     <Button
         android:id="@+id/btn_six"
+        style="@style/MuStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
         android:ems="0"
         android:text="@string/six"
         app:layout_constraintStart_toEndOf="@+id/btn_five"
@@ -140,6 +141,7 @@
 
     <Button
         android:id="@+id/btn_seven"
+        style="@style/MuStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="0"
@@ -152,7 +154,7 @@
         android:id="@+id/btn_eight"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="@dimen/btn_out_bottom_margin"
         android:ems="0"
         android:text="@string/eight"
         app:layout_constraintEnd_toEndOf="@+id/btn_addition"
@@ -164,6 +166,7 @@
         android:id="@+id/btn_nine"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/btn_out_end_margin"
         android:ems="0"
         android:text="@string/nine"
         app:layout_constraintEnd_toStartOf="@+id/btn_eight"
@@ -172,12 +175,12 @@
 
     <Button
         android:id="@+id/btn_result"
+        style="@style/MuStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
         android:ems="0"
-        android:text="@string/result"
 
+        android:text="@string/result"
         app:layout_constraintStart_toEndOf="@+id/btn_zero"
         app:layout_constraintTop_toTopOf="@+id/btn_zero" />
 
@@ -185,7 +188,7 @@
         android:id="@+id/btn_zero"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="@dimen/btn_out_bottom_margin"
         android:ems="0"
         android:text="@string/zero"
         app:layout_constraintEnd_toEndOf="@+id/btn_two"
@@ -197,11 +200,10 @@
         android:id="@+id/btn_dot"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="5dp"
+        android:layout_marginEnd="@dimen/btn_out_end_margin"
         android:ems="0"
         android:text="@string/dot"
         app:layout_constraintEnd_toStartOf="@+id/btn_zero"
         app:layout_constraintTop_toTopOf="@+id/btn_zero" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
