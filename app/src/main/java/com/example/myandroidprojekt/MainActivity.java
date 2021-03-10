@@ -2,6 +2,7 @@ package com.example.myandroidprojekt;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -9,6 +10,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+
+import com.google.android.material.button.MaterialButton;
 
 import java.util.Locale;
 
@@ -160,7 +163,15 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         textViewResult = findViewById(R.id.textViewResult);
+
+        MaterialButton buttonSetting = findViewById(R.id.setting);
+        buttonSetting.setOnClickListener((view)->{
+            Intent intent=new Intent(this,Settings.class);
+            MainActivity.this.startActivity(intent);
+
+        });
 
 //        Button btn_del = findViewById(R.id.btn_del);
         Button btn_one = findViewById(R.id.btn_one);

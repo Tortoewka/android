@@ -27,5 +27,6 @@
     <string name="equally">=</string>
     <string name="open">(</string>
     <string name="closed">)</string>
+    <string name="tema">переключение темы</string>
 
 </resources>
